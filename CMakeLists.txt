@@ -38,7 +38,7 @@ include_directories(
 
 
 ## Declare a C++ executable
-add_executable(pid_controller_node src/pid_controller_base.cpp src/pid_controller_ros.cpp src/pid_controller_node.cpp)
+add_executable(pid_controller_node src/pid_controller_base.cpp src/pid_controller_ros.cpp src/nodes/pid_controller_node.cpp)
 
 ## Add cmake target dependencies of the executable
 ## same as for the library above
