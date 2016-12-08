@@ -1,6 +1,6 @@
 #include "PidController/pid_controller_node.h"
 
-/// Main function. ROS node is initialized here and main loop executed.
+/// Main function. ROS node is initialized here and the main loop executed.
 /// \param argc The number of command line arguments.
 /// \param argv Command line arguments
 /// \return Returns 0 if the ROS node is properly terminated.
@@ -22,6 +22,7 @@ int main(int argc, char **argv)
   double kd;
   // Maximal and minimal control value
   double u_max, u_min;
+
   // message used for publishing actuator control value
   std_msgs::Float32 actuator_msg;
 
@@ -36,8 +37,7 @@ int main(int argc, char **argv)
   private_node_handle_.param("u_max", u_max, std::numeric_limits<double>::infinity());
   private_node_handle_.param("u_min", u_min, -std::numeric_limits<double>::infinity());
 
-
-  // Create a new NodeExample object.
+  // Create a new PidControllerRos object.
   PidControllerRos *pid_controller = new PidControllerRos(kp, ki, kd);
   pid_controller->setUMax(u_max);
   pid_controller->setUMin(u_min);
@@ -56,9 +56,16 @@ int main(int argc, char **argv)
   // Main loop.
   while (n.ok())
   {
+    // Run spin function at the beginning of the loop to acquire new data from ROS topics.
     ros::spinOnce();
+
+    // Do some useful job, in this case pid controller computation
     actuator_msg.data = pid_controller->compute(pid_controller->getReference(), pid_controller->getMeasurement());
+
+    // publish required data
     actuator_pub.publish(actuator_msg);
+
+    // sleep the node for the 1/rate seconds
     r.sleep();
   }
 
