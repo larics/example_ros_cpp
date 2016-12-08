@@ -11,7 +11,7 @@
 #include "ros/ros.h"
 #include "std_msgs/Float32.h"
 
-/// A class that implements PID control algorithm within ROS.
+/// \brief A class that implements PID control algorithm within ROS.
 ///
 /// Base PID controller class is inherited. In addition, this class
 /// implements ROS callbacks.
@@ -20,13 +20,13 @@ class PidControllerRos : public PidControllerBase
 {
 public:
 
-    /// Default constructor.
+    /// \brief Default constructor.
     ///
     /// Does nothing
     ///
     PidControllerRos();
 
-    /// Constructor with PID params.
+    /// \brief Constructor with PID params.
     ///
     /// Calls the base constructor with the same params.
     ///
@@ -38,7 +38,7 @@ public:
 
 
 
-    /// Default destructor.
+    /// \brief Default destructor.
     ///
     /// Does nothing.
     ///
