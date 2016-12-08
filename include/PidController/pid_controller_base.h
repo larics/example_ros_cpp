@@ -7,12 +7,13 @@
 
 #include <limits>
 #include <iostream>
+#include <time.h>
 
 /// A class that implements PID control algorithm.
 ///
 /// A class that implements a Proportional-Integral-Derivative (PID) algorithm
 /// used to control dynamical systems. Algorithm is computed in its discrete form:
-/// u = kp * e + ui_old + ki * e * td + kd * (e - e_old) / td, where
+/// u = kp * e + ui_old + ki * e * td + kd * (e - e_old) / td, with:
 /// u - output of the algorithm
 /// kp - proportional gain
 /// ki - integral gain
@@ -38,7 +39,7 @@ public:
     /// \param ki Integral gain.
     /// \param kd Derivative gain.
     ///
-    /// Initializes PID gain to the given values.
+    /// Initializes PID gains to the given values.
     ///
     PidControllerBase(double kp, double ki, double kd);
 
@@ -68,6 +69,14 @@ public:
     ///
     double getUMin(void);
 
+    /// Returns the current maximal allowable time step.
+    ///
+    double getTdMax(void);
+
+    /// Returns the current minimal allowable time step.
+    ///
+    double getTdMin(void);
+
     /// Sets proportional gain
     /// \param kp The desired value of the proportional gain
     ///
@@ -92,6 +101,16 @@ public:
     /// \param u_min The desired minimal control value.
     ///
     void setUMin(double u_min);
+
+    /// Sets maximal allowable time step.
+    /// \param td_max The desired maximal time step.
+    ///
+    void setTdMax(double td_max);
+
+    /// Sets minimal allowable time step.
+    /// \param td_min The desired minimal time step.
+    ///
+    void setTdMin(double td_min);
 
     /// Computes PID algorithm.
     /// \param ref Current referent value.
@@ -122,6 +141,18 @@ protected:
 
     // minimal control value (lower saturation limit)
     double u_min_;
+
+    // maximal allowable time step
+    double td_max_;
+
+    // minimal allowable time step
+    double td_min_;
+
+    // flag indicates if the algorithm is executed for the first time
+    bool is_first_pass_;
+
+    // time of the previous step
+    timespec time_old_;
 
 };
 
