@@ -1,13 +1,12 @@
 # example_ros_cpp
 An example of a ROS C++ package conforming to the [LARICS C++ coding standard](http://larics.rasip.fer.hr/farm/laricswiki/doku.php?id=software:coding_standard#c_coding_standards) and [ROS developers guide](http://wiki.ros.org/DevelopersGuide).
 
-In this example a PID control algorithms is implemented.
+In this example a PID control algorithm is implemented.
 
 ## Dependencies
 
-The code has been developed and tested on an Ubuntu 14.04 system. The following libraries are required to build the code and the developer docs:
+The code has been developed and tested on an Ubuntu 14.04 system with ROS Indigo. The following libraries are required to build the code and the developer docs:
 
- * C++ compiler and linker
  * Robot Operating System (developed and tested on Indigo)
  * doxygen
 
@@ -15,7 +14,7 @@ The code has been developed and tested on an Ubuntu 14.04 system. The following 
 
 ### ROS dependencies
 
-[std_msgs](http://wiki.ros.org/std_msgs)
+ * [std_msgs](http://wiki.ros.org/std_msgs)
 
 ### Nodes
  * pid_controller_node
@@ -32,7 +31,7 @@ The code has been developed and tested on an Ubuntu 14.04 system. The following 
 
 ### Building the code
 
-The code is built in a standard ROS fashion. In your ROS workspace run:
+The code is built in a standard ROS fashion. In your ROS workspace root run
 
  ```
   catkin_make --pkg example_ros_cpp
