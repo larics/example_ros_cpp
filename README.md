@@ -18,7 +18,8 @@ The code has been developed and tested on an Ubuntu 14.04 system with ROS Indigo
 
 ### Nodes
  * pid_controller_node
- The node implements a pid controller algorithm. It receives referent and measured process values through ROS topics and publishes referent actuator value.
+ 
+   The node implements a pid controller algorithm. It receives referent and measured process values through ROS topics and publishes referent actuator value.
 
 ### Subscribed topics
  * reference ([std_msgs/Float32](http://docs.ros.org/kinetic/api/std_msgs/html/msg/Float32.html))
