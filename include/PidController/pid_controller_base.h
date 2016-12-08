@@ -9,7 +9,7 @@
 #include <iostream>
 #include <time.h>
 
-/// A class that implements PID control algorithm.
+/// \brif A class that implements PID control algorithm.
 ///
 /// A class that implements a Proportional-Integral-Derivative (PID) algorithm
 /// used to control dynamical systems. Algorithm is computed in its discrete form:
@@ -27,7 +27,7 @@ class PidControllerBase
 {
 public:
 
-    /// PID controller default constructor.
+    /// \brief PID controller default constructor.
     ///
     /// Initializes PID gains to zero.
     ///
@@ -43,7 +43,7 @@ public:
     ///
     PidControllerBase(double kp, double ki, double kd);
 
-    /// PID controller destructor.
+    /// \brief PID controller destructor.
     ///
     /// Does nothing.
     ///
