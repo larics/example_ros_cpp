@@ -5,7 +5,7 @@ In this example a PID control algorithm is implemented.
 
 ## Dependencies
 
-The code has been developed and tested on an Ubuntu 14.04 system with ROS Indigo. The following libraries are required to build the code and the developer docs:
+The code has been developed and tested on an Ubuntu 14.04 system with ROS Indigo. The following libraries are required to build the code and developer docs:
 
  * Robot Operating System (developed and tested on Indigo)
  * doxygen
@@ -18,7 +18,7 @@ The code has been developed and tested on an Ubuntu 14.04 system with ROS Indigo
 
 ### Nodes
  * pid_controller_node
- The node a pid controller algorithm. It receives referent and process value through ROS topics and publishes referent actuator value.
+ The node implements a pid controller algorithm. It receives referent and measured process values through ROS topics and publishes referent actuator value.
 
 ### Subscribed topics
  * reference ([std_msgs/Float32](http://docs.ros.org/kinetic/api/std_msgs/html/msg/Float32.html))
@@ -31,7 +31,7 @@ The code has been developed and tested on an Ubuntu 14.04 system with ROS Indigo
 
 ### Building the code
 
-The code is built in a standard ROS fashion. In your ROS workspace root run
+The code is built in a standard ROS fashion. In your ROS workspace root execute:
 
  ```
   catkin_make --pkg example_ros_cpp
