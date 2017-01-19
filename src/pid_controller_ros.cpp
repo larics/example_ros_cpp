@@ -1,16 +1,16 @@
 #include "pid_controller/pid_controller_ros.h"
 
 PidControllerRos::PidControllerRos()
-                : reference_(0.0),
-                  measurement_(0.0)
+  : reference_(0.0),
+    measurement_(0.0)
 {
 
 }
 
 PidControllerRos::PidControllerRos(double kp, double ki, double kd)
-                : PidControllerBase::PidControllerBase(kp, ki, kd),
-                  reference_(0.0),
-                  measurement_(0.0)
+  : PidControllerBase::PidControllerBase(kp, ki, kd),
+    reference_(0.0),
+    measurement_(0.0)
 {
 
 }
