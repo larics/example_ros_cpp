@@ -11,6 +11,10 @@ int main(int argc, char **argv)
   ros::init(argc, argv, "pid_controller_node");
   ros::NodeHandle n;
 
+  // Make a private node handle so that multiple instances of the node can be run simultaneously
+  // while using different parameters.
+  ros::NodeHandle private_node_handle("~");
+
   // Declare variables that can be modified by launch file or command line.
   // ROS node rate (also the PID algorithm rate)
   int rate;
@@ -26,16 +30,13 @@ int main(int argc, char **argv)
   // message used for publishing the value of the controlled variable
   std_msgs::Float32 output_msg;
 
-  // Initialize node parameters from launch file or command line.
-  // Use a private node handle so that multiple instances of the node can be run simultaneously
-  // while using different parameters.
-  ros::NodeHandle private_node_handle_("~");
-  private_node_handle_.param("rate", rate, 100);
-  private_node_handle_.param("kp", kp, 0.0);
-  private_node_handle_.param("ki", ki, 0.0);
-  private_node_handle_.param("kd", kd, 0.0);
-  private_node_handle_.param("u_max", u_max, std::numeric_limits<double>::infinity());
-  private_node_handle_.param("u_min", u_min, -std::numeric_limits<double>::infinity());
+  // Initialize private node parameters.
+  private_node_handle.param("rate", rate, 100);
+  private_node_handle.param("kp", kp, 0.0);
+  private_node_handle.param("ki", ki, 0.0);
+  private_node_handle.param("kd", kd, 0.0);
+  private_node_handle.param("u_max", u_max, std::numeric_limits<double>::infinity());
+  private_node_handle.param("u_min", u_min, -std::numeric_limits<double>::infinity());
 
   // Create a new PidControllerRos object.
   PidControllerRos *pid_controller = new PidControllerRos(kp, ki, kd);
