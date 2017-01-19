@@ -1,13 +1,13 @@
 #include "pid_controller/pid_controller_node.h"
 
-/// Main function. ROS node is initialized here and the main loop executed.
+/// Main function. The ROS node is initialized here and the main loop is entered.
 /// \param argc The number of command line arguments.
 /// \param argv Command line arguments
 /// \return Returns 0 if the ROS node is properly terminated.
 ///
 int main(int argc, char **argv)
 {
-  // Set up ROS node.
+  // Set up the ROS node.
   ros::init(argc, argv, "pid_controller_node");
   ros::NodeHandle n;
 
@@ -43,8 +43,8 @@ int main(int argc, char **argv)
   pid_controller->setUMax(u_max);
   pid_controller->setUMin(u_min);
 
-  // Create a subscriber.
-  // Name the topic, message queue, callback function with class name, and object containing callback function.
+  // Create a subscriber. The parameters of n.subscribe() are: topic name, message queue length, the callback function,
+  //  and the object on which the callback function is called.
   ros::Subscriber ref_sub = n.subscribe("reference", 1, &PidControllerRos::referenceCallback, pid_controller);
   ros::Subscriber meas_sub = n.subscribe("measurement", 1, &PidControllerRos::measurementCallback, pid_controller);
 
@@ -54,17 +54,16 @@ int main(int argc, char **argv)
   // Tell ROS how fast to run this node.
   ros::Rate r(rate);
 
-  // Main loop.
+  // Main loop
   while (n.ok())
   {
     // Run spin function at the beginning of the loop to acquire new data from ROS topics.
     ros::spinOnce();
 
     // Do useful work here
-    // Do some useful job, in this case pid controller computation
     output_msg.data = pid_controller->compute(pid_controller->getReference(), pid_controller->getMeasurement());
 
-    // publish required data
+    // publish the computed data
     output_pub.publish(output_msg);
 
     // sleep the node for the 1/rate seconds
