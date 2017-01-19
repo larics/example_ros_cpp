@@ -1,4 +1,4 @@
-#include "PidController/pid_controller_node.h"
+#include "pid_controller/pid_controller_node.h"
 
 /// Main function. ROS node is initialized here and the main loop executed.
 /// \param argc The number of command line arguments.
