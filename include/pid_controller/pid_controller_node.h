@@ -5,6 +5,6 @@
 #ifndef PID_CONTROLLER_NODE_H
 #define PID_CONTROLLER_NODE_H
 
-#include "PidController/pid_controller_ros.h"
+#include "pid_controller/pid_controller_ros.h"
 
 #endif // PID_CONTROLLER_NODE_H
